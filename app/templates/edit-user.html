@@ -1,0 +1,38 @@
+
+<div ng-include="'templates/navbar.html'"></div>
+
+<div class="container" ng-controller="AuthenticationController">
+    <div class="well bs-component col-lg-5">
+        <form class="form-horizontal" name="registerForm" ng-submit="editUser()">
+            <fieldset>
+                <legend>Edit Profile</legend>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputName" ng-model="userData.name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputEmail" ng-model="userData.email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="other">Other</label>
+                    <input type="radio" id="other"  name="gender" value="0" />
+                    <label for="male">Male</label>
+                    <input type="radio" id="male"  name="gender" value="1" />
+                    <label for="female">Female</label>
+                    <input type="radio" id="female"  name="gender" value="2" />
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="/#/user/home" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Edit Profile</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

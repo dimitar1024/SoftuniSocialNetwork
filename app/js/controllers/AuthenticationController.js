@@ -1,7 +1,7 @@
 'use strict';
 
 Advertisements.controller('AuthenticationController', function ($scope, $location, $route,
-                        authentication, mainData, notifyService) {
+                        authentication, mainData, adServices, adminServices, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -16,7 +16,8 @@ Advertisements.controller('AuthenticationController', function ($scope, $locatio
                 notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
                 ClearData();
-                $location.path('/');
+                $location.path('/user/home');
+                
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Login!", serverError)
@@ -29,10 +30,22 @@ Advertisements.controller('AuthenticationController', function ($scope, $locatio
                 notifyService.showInfo("Successful Register!");
                 authentication.SetCredentials(serverData);
                 ClearData();
-                $location.path('/');
+                $location.path('/user/home');
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Register!", serverError)
+            });
+    };
+
+    $scope.changePassword = function () {
+        authentication.ChangePassword($scope.passwordData,
+            function() {
+                notifyService.showInfo("Successful Password Change!");
+                ClearData();
+                $location.path('/user/home');
+            },
+            function (serverError) {
+                notifyService.showError("Unsuccessful Password Change!", serverError)
             });
     };
 

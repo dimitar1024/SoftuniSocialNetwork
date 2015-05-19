@@ -1,0 +1,28 @@
+<div class="navbar navbar-default navbar-fixed-top" ng-controller="AuthenticationController" ng-if="isNotAdmin">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../#" ng-click="clear()" ng-if="!username" class="navbar-brand">SoftUni Social Network</a>
+            <a href="../#/user/home" ng-click="clear()" ng-if="username" class="navbar-brand">SoftUni Social Network</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse in" id="navbar-main" aria-expanded="false">
+            <ul class="nav navbar-nav" ng-if="!username">
+                <li><a href="../#/login">Login</a></li>
+                <li><a href="../#/register">Register</a></li>
+            </ul>
+            <ul class="nav navbar-nav" ng-if="username">
+                <li><a href="../#/user/home" ng-click="clear()">Home</a></li>
+                <li><a href="../#/me/profile">Edit Profile</a></li>
+                <li><a href="../#/me/password">Edit Password</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="username">
+                <li><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>
+                <li><a href="../#/" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

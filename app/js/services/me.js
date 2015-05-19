@@ -1,21 +1,21 @@
 'use strict';
 
-Advertisements.factory('authentication', function ($http, baseServiceUrl) {
+Advertisements.factory('me', function ($http, baseServiceUrl) {
     var service = {};
 
-    var serviceUrl = baseServiceUrl + '/users';
+    var serviceUrl = baseServiceUrl + '/me';
 
-    service.Login = function (loginData, success, error) {
-        $http.post(serviceUrl + '/login', loginData)
+    service.GetUserProfile = function (success, error) {
+        $http.get(serviceUrl, {headers: this.GetHeaders()})
             .success(function (data, status, headers, config) {
-                success(data);
+                success(data)
             }).error(error);
     };
 
-    service.Register = function (registerData, success, error) {
-        $http.post(serviceUrl + '/register', registerData)
+    service.EditUserProfile = function (editUserData, success, error) {
+        $http.put(serviceUrl, editUserData, {headers: this.GetHeaders()})
             .success(function (data, status, headers, config) {
-                success(data);
+                success(data)
             }).error(error);
     };
 
@@ -24,12 +24,6 @@ Advertisements.factory('authentication', function ($http, baseServiceUrl) {
             .success(function (data, status, headers, config) {
                 success()
             }).error(error);
-    };
-
-    service.SetCredentials = function (serverData) {
-        localStorage['accessToken'] = serverData.access_token;
-        localStorage['username'] = serverData.userName;
-        localStorage['isAdmin'] = serverData.isAdmin ? serverData.isAdmin : false;
     };
 
     service.GetUsername = function () {
