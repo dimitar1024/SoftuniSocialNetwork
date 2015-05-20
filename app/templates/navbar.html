@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top" ng-controller="AuthenticationController" ng-if="isNotAdmin">
+<div class="navbar navbar-default navbar-fixed-top" ng-controller="AuthenticationController">
     <div class="container">
         <div class="navbar-header">
             <a href="../#" ng-click="clear()" ng-if="!username" class="navbar-brand">SoftUni Social Network</a>
@@ -14,14 +14,16 @@
                 <li><a href="../#/login">Login</a></li>
                 <li><a href="../#/register">Register</a></li>
             </ul>
-            <ul class="nav navbar-nav" ng-if="username">
-                <li><a href="../#/user/home" ng-click="clear()">Home</a></li>
-                <li><a href="../#/me/profile">Edit Profile</a></li>
-                <li><a href="../#/me/password">Edit Password</a></li>
+            <ul class="nav navbar-nav navbar-left" ng-if="username">
+                <li><input type="search" name="search" placeholder="  Search..." /></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="username">
-                <li><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>
-                <li><a href="../#/" ng-click="logout()">Logout</a></li>
+                <li class="username"><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>
+                <li><a href="../#/user/home" ng-click="clear()"><span class="glyphicon glyphicon-globe"></span></a></li>
+                <li><a href="../#/user/home" ng-click="clear()"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a href="../#/me/profile"><span class="glyphicon glyphicon-tasks"></span></a></li>
+                <li><a href="../#/me/password"><span class="glyphicon glyphicon-cog"></span></a></li>
+                <li><a href="../#/" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>
             </ul>
         </div>
     </div>

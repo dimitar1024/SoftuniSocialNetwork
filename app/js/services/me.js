@@ -1,6 +1,6 @@
 'use strict';
 
-Advertisements.factory('me', function ($http, baseServiceUrl) {
+SoftUniNetwork.factory('me', function ($http, baseServiceUrl) {
     var service = {};
 
     var serviceUrl = baseServiceUrl + '/me';
@@ -13,10 +13,11 @@ Advertisements.factory('me', function ($http, baseServiceUrl) {
     };
 
     service.EditUserProfile = function (editUserData, success, error) {
-        $http.put(serviceUrl, editUserData, {headers: this.GetHeaders()})
+        $http.put(serviceUrl, editUserData, {headers: authentication.GetHeaders()})
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
+        $http(request).success(success).error(error);
     };
 
     service.ChangePassword = function (passwordData, success, error) {
@@ -42,6 +43,13 @@ Advertisements.factory('me', function ($http, baseServiceUrl) {
         return {
             Authorization: "Bearer " + localStorage['accessToken']
         };
+    };
+
+    service.GetUserProfile = function (success, error) {
+        $http.get(serviceUrl, { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
     };
 
     service.isLoggedIn = function () {

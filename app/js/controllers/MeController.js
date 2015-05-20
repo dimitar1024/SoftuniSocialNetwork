@@ -1,7 +1,7 @@
 'use strict';
 
-Advertisements.controller('MeController', function ($scope, $location, $route,
-                        authentication, mainData, me,adServices, adminServices, notifyService) {
+SoftUniNetwork.controller('MeController', function ($scope, $location, $route,
+                        authentication, mainData, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -15,7 +15,7 @@ Advertisements.controller('MeController', function ($scope, $location, $route,
             function(serverData) {
                 notifyService.showInfo("Successful Profile Edit!");
                 ClearData();
-                $location.path('/user/home');
+                $location.path('/home');
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Profile Edit!", serverError)
@@ -27,12 +27,13 @@ Advertisements.controller('MeController', function ($scope, $location, $route,
             function() {
                 notifyService.showInfo("Successful Password Change!");
                 ClearData();
-                $location.path('/user/home');
+                $location.path('/home');
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Password Change!", serverError)
             });
     };
+
 
     $scope.clear = function () {
         mainData.clearParams();

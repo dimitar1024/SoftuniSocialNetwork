@@ -1,6 +1,6 @@
 'use strict';
 
-Advertisements.factory('notifyService',
+SoftUniNetwork.factory('notifyService',
     function () {
         return {
             showInfo: function(msg) {

@@ -1,7 +1,7 @@
 'use strict';
 
-Advertisements.controller('AuthenticationController', function ($scope, $location, $route,
-                        authentication, mainData, adServices, adminServices, notifyService) {
+SoftUniNetwork.controller('AuthenticationController', function ($scope, $location, $route,
+                        authentication, mainData, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -16,7 +16,7 @@ Advertisements.controller('AuthenticationController', function ($scope, $locatio
                 notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
                 ClearData();
-                $location.path('/user/home');
+                $location.path('/home');
                 
             },
             function (serverError) {
@@ -30,19 +30,45 @@ Advertisements.controller('AuthenticationController', function ($scope, $locatio
                 notifyService.showInfo("Successful Register!");
                 authentication.SetCredentials(serverData);
                 ClearData();
-                $location.path('/user/home');
+                $location.path('/home');
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Register!", serverError)
             });
     };
 
+    $scope.editUser = function () {
+        authentication.EditUserProfile($scope.userData,
+            function (serverData) {
+                notifyService.showInfo("Successful Profile Edit!");
+                ClearData();
+                $location.path('/home');
+            },
+            function (serverError) {
+                notifyService.showError("Unsuccessful Profile Edit!", serverError)
+                console.log(serverError);
+            });
+    };
+
     $scope.changePassword = function () {
         authentication.ChangePassword($scope.passwordData,
-            function() {
+            function () {
                 notifyService.showInfo("Successful Password Change!");
                 ClearData();
-                $location.path('/user/home');
+                $location.path('/home');
+            },
+            function (serverError) {
+                notifyService.showError("Unsuccessful Password Change!", serverError)
+            });
+    };
+
+    $scope.getUserFullData = function () {
+        authentication.getUserFullData(localStorage['username'],
+            function (data) {
+                notifyService.showInfo("Successful Password Change!");
+                ClearData();
+                $location.path('/home');
+                $scope.fullData = data;
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Password Change!", serverError)
