@@ -16,11 +16,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-left" ng-if="username">
                 <li><input type="search" name="search" placeholder="  Search..." /></li>
+                <li><a href="../#/user/requests" ng-click="clear()"><span class="glyphicon glyphicon-search"></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="username">
                 <li class="username"><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>
                 <li><a href="../#/user/home" ng-click="clear()"><span class="glyphicon glyphicon-globe"></span></a></li>
-                <li><a href="../#/user/home" ng-click="clear()"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a href="../#/user/friends" ng-click="clear()"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a href="../#/user/requests" ng-click="clear()"><span class="glyphicon glyphicon-tags"></span></a></li>
                 <li><a href="../#/me/profile"><span class="glyphicon glyphicon-tasks"></span></a></li>
                 <li><a href="../#/me/password"><span class="glyphicon glyphicon-cog"></span></a></li>
                 <li><a href="../#/" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>

@@ -3,7 +3,7 @@ body {
     hyphens: auto;
 }
 
-.navbar-header{
+.navbar-header {
     height: 80px;
 }
 
@@ -28,6 +28,7 @@ body {
 legend {
     text-align: center;
 }
+
 @font-face {
     font-family: 'glyphicons-halflings-regular';
     src: url('../fonts/glyphicons-halflings-regular.ttf') format('truetype');
@@ -39,20 +40,28 @@ legend {
     }
 }
 
+.login {
+    margin-top: 100px;
+}
+
 .editpage {
     margin: 160px;
 }
 
 .profileImageData {
-   width: 150px;
+    width: 150px;
     height: 150px;
     display: inline-block;
     border: 1px solid rgba(100, 155, 63, 0.51);
     text-align: center;
 }
 
+.fr-h1 {
+    margin: 50px;
+}
+
 .CoverImageData {
-   width: 150px;
+    width: 150px;
     height: 150px;
     display: inline-block;
     border: 1px solid rgba(100, 155, 63, 0.51);
@@ -63,6 +72,85 @@ legend {
     display: inline-block;
 }
 
+#profilename {
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+}
+
 .images {
     margin-left: 100px;
+}
+
+#cover-img {
+    position: absolute;
+    z-index: -1;
+    margin-top: -400px;
+}
+
+#userprofile {
+    display: inline-block;
+    margin-top: 150px;
+    margin-left: 50px;
+}
+
+.img-thumbnail {
+    height: 150px;
+}
+
+.friend {
+    padding: 10px;
+}
+
+    .friend:hover {
+        background-color: #dddddd;
+    }
+
+.friend div {
+    display: inline-block;
+    margin: 10px;
+}
+
+    .friend div h3 {
+        margin: 0;
+        padding: 0;
+        display: block;
+        color: red;
+    }
+
+    .friend img {
+        display: inline-block;
+    }
+
+    .friend div p {
+       margin: 0;
+        padding: 0;
+        display: inline-block;
+    }
+
+    .friend div button {
+        margin-top: 20px;
+    }
+
+.friendslist {
+    display: block;
+    margin-left: 150px;
+}
+
+@media (min-width: 768px) {
+    #cover-img {
+        width: 700px;
+    }
+}
+
+@media (min-width: 992px) {
+    #cover-img {
+        width: 920px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #cover-img {
+        width: 1120px;
+    }
 }

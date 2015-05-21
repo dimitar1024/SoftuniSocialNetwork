@@ -1,0 +1,20 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="userprofile">
+    <h1 class="fr-h1"> Friends</h1>
+    <div class="friendslist">
+        <div class="container friendslist">
+            <div ng-repeat="friend in friendList" class="friend col-md-4" id="{{friend.id}}">
+                <img ng-src="{{friend.profileImageData}}" class="img-circle" alt="Alternate Text" />
+                <div>
+                    <h3>{{friend.name}}</h3>
+                    <p>{{friend.username}} </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    
+    
+</div>
