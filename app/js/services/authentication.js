@@ -40,29 +40,34 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
-    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-
     service.GetOwnFriends = function (success, error) {
         $http.get(serviceUrl + '/me/friends', { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
-                success()
+                success(data)
             }).error(error);
     };
 
-    service.GetUserFullData = function (userName, success, error) {
-        $http.get(serviceUrl + '/' + userName, { headers: this.GetHeaders() })
+    service.GetOwnRequests = function (success, error) {
+        $http.get(serviceUrl + '/me/requests', { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
     };
 
-    service.GetUserPreviewData = function (userName, success, error) {
-        $http.get(serviceUrl + '/' + userName + '/preview', { headers: this.GetHeaders() })
+    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    service.ApproveFriendRequest = function (approveId, success, error) {
+        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=approved', { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
     };
 
+    service.RejectFriendRequest = function (approveId, success, error) {
+        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=rejected', { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
 
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

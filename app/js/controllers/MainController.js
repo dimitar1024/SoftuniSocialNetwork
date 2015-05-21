@@ -3,12 +3,15 @@
 SoftUniNetwork.controller('MainController', function ($scope, $location, mainData, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.username = authentication.GetUsername();
-    //getUserFullData();
     if ($scope.username) {
         authentication.GetUserProfile(function (serverData) {
             $scope.userData = serverData;
         })
     }
+
+    authentication.GetOwnFriends(function (friends) {
+        $scope.friendList = friends;
+    })
 
     $scope.fileSelected = function (fileInputField) {
         //delete $scope.userData.profileImageData;

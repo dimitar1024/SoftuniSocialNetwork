@@ -1,48 +1,53 @@
-'use strict';
+﻿'use strict';
 
-SoftUniNetwork.controller('MeController', function ($scope, $location, $route,
-                        authentication, mainData, notifyService) {
-
-    var ClearData = function () {
-        $scope.loginData = "";
-        $scope.registerData = "";
-        $scope.userData = "";
-        $scope.passwordData = "";
-    };
-
-    $scope.editUser = function () {
-        me.EditUserProfile($scope.userData,
-            function(serverData) {
-                notifyService.showInfo("Successful Profile Edit!");
-                ClearData();
-                $location.path('/home');
-            },
-            function (serverError) {
-                notifyService.showError("Unsuccessful Profile Edit!", serverError)
-            });
-    };
-
-    $scope.changePassword = function () {
-        me.ChangePassword($scope.passwordData,
-            function() {
-                notifyService.showInfo("Successful Password Change!");
-                ClearData();
-                $location.path('/home');
-            },
-            function (serverError) {
-                notifyService.showError("Unsuccessful Password Change!", serverError)
-            });
-    };
-
-
-    $scope.clear = function () {
-        mainData.clearParams();
-        adminServices.clearParams();
-        $route.reload();
-    };
-
-    $scope.clearStatus = function () {
-        adServices.clearParams();
-        $route.reload();
+SoftUniNetwork.controller('MeController', function ($scope, $location, mainData, authentication, notifyService) {
+    $scope.startPage = 1;
+    $scope.username = authentication.GetUsername();
+    if ($scope.username) {
+        authentication.GetUserProfile(function (serverData) {
+            $scope.userData = serverData;
+        })
     }
+
+    authentication.GetOwnFriends(function (friends) {
+        $scope.friendList = friends;
+    })
+
+    authentication.GetOwnRequests(function (requests) {
+        $scope.requests = requests;
+    })
+
+
+    $scope.approve = function () {
+        authentication.ApproveFriendRequest($scope.userData,
+            function (serverData) {
+                notifyService.showInfo("Successful Approve Edit!");
+                ClearData();
+                $location.path('/user/friends');
+            },
+            function (serverError) {
+                notifyService.showError("Unsuccessful Approve Edit!", serverError)
+                console.log(serverError);
+            });
+    };
+
+    $scope.reject = function () {
+        authentication.RejectFriendRequest($scope.userData,
+            function (serverData) {
+                notifyService.showInfo("Successful Reject Edit!");
+                ClearData();
+                $location.path('/user/friends');
+            },
+            function (serverError) {
+                notifyService.showError("Unsuccessful Reject Edit!", serverError)
+                console.log(serverError);
+            });
+    };
+
+    $scope.getId = function () {
+        $("button").click(function () {
+            $scope.editId = $(this).parent().parent().attr('id');
+        });
+    };
+
 });

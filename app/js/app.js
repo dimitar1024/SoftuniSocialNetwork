@@ -15,12 +15,20 @@ SoftUniNetwork.config(function ($routeProvider) {
             controller:'MainController'
         })
         .when('/', {
-            templateUrl:'templates/all-ads.html',
+            templateUrl:'templates/all-post.html',
             controller:'MainController'
         })
         .when('/home', {
-            templateUrl:'templates/all-ads.html',
+            templateUrl:'templates/all-post.html',
             controller:'MainController'
+        })
+        .when('/user/friends', {
+            templateUrl: 'templates/user-friends.html',
+            controller: 'MeController'
+        })
+        .when('/user/requests', {
+            templateUrl: 'templates/user-requests.html',
+            controller: 'MeController'
         })
         .when('/me/profile', {
             templateUrl:'templates/edit-user.html',
