@@ -22,6 +22,14 @@ SoftUniNetwork.config(function ($routeProvider) {
             templateUrl:'templates/all-post.html',
             controller:'MainController'
         })
+        .when('/home/:id', {
+            templateUrl: 'templates/all-post.html',
+            controller: 'MainController'
+        })
+        .when('/post/:idPost', {
+            templateUrl: 'templates/post.html',
+            controller: 'PostController'
+        })
         .when('/user/friends', {
             templateUrl: 'templates/user-friends.html',
             controller: 'MeController'

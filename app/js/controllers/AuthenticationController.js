@@ -62,20 +62,8 @@ SoftUniNetwork.controller('AuthenticationController', function ($scope, $locatio
             });
     };
 
-    $scope.getUserFullData = function () {
-        authentication.getUserFullData(localStorage['username'],
-            function (data) {
-                notifyService.showInfo("Successful Password Change!");
-                ClearData();
-                $location.path('/home');
-                $scope.fullData = data;
-            },
-            function (serverError) {
-                notifyService.showError("Unsuccessful Password Change!", serverError)
-            });
-    };
-
     $scope.logout = function () {
+        authentication.Logout();
         notifyService.showInfo("Successful Logout!");
         ClearData();
         authentication.ClearCredentials();

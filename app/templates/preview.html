@@ -1,0 +1,10 @@
+﻿<div id="preview">
+    <img ng-if="preview.gender == 0"  src="../imgs/other.png" />
+        <img ng-if="preview.gender == 1" src="../imgs/male.png" />
+        <img ng-if="preview.gender == 2" src="../imgs/female.png" />
+
+        <button ng-if="preview.isFriend == true" class="btn btn-info">Friend</button>
+        <button ng-if="preview.isFriend == false" class="btn btn-danger">Invite</button>
+        <button ng-if="preview.hasPendingRequest == true" class="btn btn-danger">Invitation was sent</button>
+    
+</div>

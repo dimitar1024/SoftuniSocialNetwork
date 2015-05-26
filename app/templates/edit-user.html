@@ -17,25 +17,35 @@
                         <input type="text" class="form-control" id="inputEmail" ng-model="userData.email" placeholder="Email">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="other">Other</label>
+                    <input type="radio" id="other" ng-model="userData.gender" name="gender" value="0" />
+                    <label for="male">Male</label>
+                    <input type="radio" id="male" ng-model="userData.gender" name="gender" value="1" />
+                    <label for="female">Female</label>
+                    <input type="radio" id="female" ng-model="userData.gender" name="gender" value="2" />
+                </div>
                 <div class="images">
                     <div class="form-group profileImg">
                         <label for="image">Profile Image:</label>
-                        <input type="file" id="image"
-                               onchange="angular.element(this).scope().fileSelected(this)" />
                         <div class="profileImageData">
                             <img ng-src="userData.profileImageData" />
                             <p>Image Preview</p>
                         </div>
+                        <input type="file" id="image"
+                               onchange="angular.element(this).scope().fileSelected(this)" />
+                        
                     </div>
 
                     <div class="form-group profileImg">
                         <label for="image">Cover Image:</label>
-                        <input type="file" id="image"
-                               onchange="angular.element(this).scope().CoverImageData(this)" />
                         <div class="CoverImageData">
                             <img ng-src="userData.coverImageData" />
                             <p>Image Preview</p>
                         </div>
+                        <input type="file" id="image"
+                               onchange="angular.element(this).scope().CoverImageData(this)" />
+                        
                     </div>
                 </div>
     

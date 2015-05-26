@@ -19,6 +19,13 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
+    service.Logout = function (success, error) {
+        $http.post(serviceUrl + '/users/logout', { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    };
+
     service.GetUserProfile = function (success, error) {
         $http.get(serviceUrl + '/me', { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
@@ -64,6 +71,34 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
 
     service.RejectFriendRequest = function (approveId, success, error) {
         $http.put(serviceUrl + '/me/requests/' + approveId + '?status=rejected', { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
+    service.SearchUsersByName = function (userName, success, error) {
+        $http.get(serviceUrl + '/users/search?searchTerm=' + userName, { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
+    service.GetFriendsDetailedFriendsList = function (userName, success, error) {
+        $http.get(serviceUrl + '/users/' + userName + '/friends', { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
+    service.GetFullUserData = function (userName, success, error) {
+        $http.get(serviceUrl + '/users/' + userName, { headers: this.GetHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
+    service.GetUserPreviewData = function (userName, success, error) {
+        $http.get(serviceUrl + '/users/' + userName + '/preview', { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);

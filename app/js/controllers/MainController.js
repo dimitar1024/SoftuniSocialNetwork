@@ -1,17 +1,33 @@
 'use strict';
 
-SoftUniNetwork.controller('MainController', function ($scope, $location, mainData, authentication, notifyService) {
+SoftUniNetwork.controller('MainController', function ($scope,$routeParams, $location, mainData, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.username = authentication.GetUsername();
-    if ($scope.username) {
-        authentication.GetUserProfile(function (serverData) {
-            $scope.userData = serverData;
+
+    if ($routeParams.id) {
+        authentication.GetFullUserData($routeParams.id,function (user) {
+            $scope.userData = user;
+        })
+
+        authentication.GetFriendsDetailedFriendsList($routeParams.id, function (friends) {
+            $scope.friendList = friends;
         })
     }
+    else {
+        if ($scope.username) {
+            authentication.GetUserProfile(function (serverData) {
+                $scope.userData = serverData;
+            })
 
-    authentication.GetOwnFriends(function (friends) {
-        $scope.friendList = friends;
-    })
+            authentication.GetOwnFriends(function (friends) {
+                $scope.friendList = friends;
+            })
+        }
+    }
+
+    
+
+    
 
     $scope.fileSelected = function (fileInputField) {
         //delete $scope.userData.profileImageData;
@@ -42,6 +58,4 @@ SoftUniNetwork.controller('MainController', function ($scope, $location, mainDat
             $(".image-box").html("<p>File type not supported!</p>");
         }
     };
-
-
 });

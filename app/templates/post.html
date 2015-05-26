@@ -1,0 +1,110 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="container">
+    <div class="bs-component col-lg-9">
+
+        <div class="userprofile">
+            <div class="userimg">
+                <img ng-src="{{userData.coverImageData}}" id="cover-img" alt="user cover image" />
+
+                <div class="profile-data">
+                    <img ng-src="{{userData.profileImageData}}" class="img-thumbnail" height=" 150" id="userprofile">
+                    <p id="profilename">{{userData.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container " ng-controller="PostController">
+
+    <div id="{{meWell.id}}">
+        <div class="well bs-component col-lg-12">
+            <img ng-src="{{meWell.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
+            <p class="postHeader">{{meWell.author.name}} (<span>{{meWell.author.username}}</span>) <button ng-if="post.author.username == username" ng-click="deletePost(post.id)"> Delete</button> </p>
+            <p class="date"> published a post in {{meWell.date | date:'MMM d, y HH:mm:ss'}}</p>
+            <div class="postContent">
+                <p>{{meWell.postContent}}</p>
+            </div>
+
+            <img ng-src="{{meWell.wallOwner.profileImageData}}" width="50" class="img-circle postImages ownerPost" alt="Alternate Text" />
+
+            <p class="postHeader ownerPost">{{meWell.wallOwner.name}} (<span>{{meWell.wallOwner.username}}</span>)</p>
+            <p class="inWall">the wall of </p>
+
+            <p>
+                <span ng-if="post.liked == true">
+                    <span class="glyphicon glyphicon-thumbs-up">
+                    </span>  You Like
+                </span>
+                <span ng-if="post.liked == false">
+                    <span class="glyphicon glyphicon-thumbs-down">
+                    </span>  You Unlike
+                </span>
+                <span>
+                    <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likePost(postList.id)">
+                    </span>({{meWell.likesCount}})
+                    <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikePost(postList.id)">
+                    </span>
+                </span>
+                <span class="glyphicon glyphicon-comment" ng-click="displayPost(postList.id)"></span>({{meWell.totalCommentsCount}})
+
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="container " ng-controller="CommentController">
+    <div class="well bs-component col-lg-12">
+        <div ng-if="comments.length == 0">
+            <h3> No Comments</h3>
+        </div>
+
+        <div ng-repeat="comment in comments">
+            <div id="{{comment.id}}">
+                <div class="well bs-component col-lg-12">
+                    <img ng-src="{{comment.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
+                    <p class="postHeader">
+                        {{comment.author.name}} (<span>{{comment.author.username}}</span>)
+                        <button ng-if="comment.author.username == username" ng-click="deleteComment(meWell.id, comment.id)"> Delete</button>
+                    </p>
+                    <p class="date"> published a post in {{comment.date | date:'MMM d, y HH:mm:ss'}}</p>
+                    <div class="postContent">
+                        <p>{{comment.commentContent}}</p>
+                    </div>
+
+
+                    <p>
+                        <span ng-if="comment.liked == true">
+                            <span class="glyphicon glyphicon-thumbs-up">
+                            </span>  You Like
+                        </span>
+                        <span ng-if="comment.liked == false">
+                            <span class="glyphicon glyphicon-thumbs-down">
+                            </span>  You Unlike
+                        </span>
+                        <span>
+                            <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likeComment(meWell.id, comment.id)">
+                            </span>({{comment.likesCount}})
+                            <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikeComment(meWell.id, comment.id)">
+                            </span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container " ng-controller="PostController">
+    <div class="well bs-component col-lg-12">
+        <form class="form-horizontal" name="registerForm" ng-submit="addNewPost()">
+            <h3> Add Comment</h3>
+            <fieldset>
+                <textarea ng-model="post.postContent"></textarea>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+    </div>
+</div>

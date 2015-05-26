@@ -1,26 +1,84 @@
 
 <div ng-include="'templates/navbar.html'"></div>
-
 <div class="container">
     <div class="bs-component col-lg-9">
-        <!--<div class="col-lg-offset-3">
-            <pagination ng-if="data.numPages > 1"
-                        total-items="data.numItems" ng-model="startPage"
-                        items-per-page="5" ng-change="pagination()"
-                        max-size="5" boundary-links="true">
-            </pagination>
-        </div>-->
-        <div ng-include="'templates/user-profile.html'"></div>
-        <div ng-include="'templates/top-friends.html'"></div>
-        
 
-        <!--<div class="col-lg-offset-3">
-            <pagination ng-if="data.numPages > 1"
-                        total-items="data.numItems" ng-model="startPage"
-                        items-per-page="5" ng-change="pagination()"
-                        max-size="5" boundary-links="true">
-            </pagination>
-        </div>-->
+        <div class="userprofile">
+            <div class="userimg">
+                <img ng-src="{{userData.coverImageData}}" id="cover-img" alt="user cover image" />
+
+                <div class="profile-data">
+                    <img ng-src="{{userData.profileImageData}}" class="img-thumbnail" height=" 150" id="userprofile">
+                    <p id="profilename">{{userData.name}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="userprofile">
+            <div class="Top6friendslist">
+                <div class="container" ng-controller="FriendController">
+                    <div ng-repeat="friend in friendList | limitTo:6" ng-click="displayProfile(friend.username)" class="friend col-sm-2" id="{{friend.id}}">
+                        <img ng-src="{{friend.profileImageData}}" class="img-circle" alt="Alternate Text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container " ng-controller="PostController">
+
+            <div ng-repeat="post in meWell">
+
+                <div id="{{post.id}}">
+                    <div class="well bs-component col-lg-12">
+                        <img ng-src="{{post.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
+                        <p class="postHeader">{{post.author.name}} (<span>{{post.author.username}}</span>) 
+                            <button ng-if="post.author.username == username" ng-click="deleteComment(post.id)"> Delete</button> 
+                        </p>
+                        <p class="date"> published a post in {{post.date | date:'MMM d, y HH:mm:ss'}}</p>
+                        <div class="postContent">
+                            <p>{{post.postContent}}</p>
+                        </div>
+
+                        <img ng-src="{{post.wallOwner.profileImageData}}" width="50" class="img-circle postImages ownerPost" alt="Alternate Text" />
+
+                        <p class="postHeader ownerPost">{{post.wallOwner.name}} (<span>{{post.wallOwner.username}}</span>)</p>
+                        <p class="inWall">the wall of </p>
+
+                        <p>
+                            <span ng-if="post.liked == true">
+                                <span class="glyphicon glyphicon-thumbs-up">
+                                </span>  You Like
+                            </span>
+                            <span ng-if="post.liked == false">
+                                <span class="glyphicon glyphicon-thumbs-down">
+                                </span>  You Unlike
+                            </span>
+                            <span>
+                                <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likePost(post.id)">
+                                </span>({{post.likesCount}})
+                                <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikePost(post.id)">
+                                </span>
+                            </span>
+                            <span class="glyphicon glyphicon-comment" ng-click="displayPost(post.id)"></span>({{post.totalCommentsCount}})
+                            
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="container " ng-controller="PostController">
+            <div class="well bs-component col-lg-12">
+                <form class="form-horizontal" name="registerForm" ng-submit="addNewPost()">
+                    <h3> Add Post</h3>
+                    <fieldset>
+                        <textarea ng-model="post.postContent"></textarea>
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Add Post</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 </div>

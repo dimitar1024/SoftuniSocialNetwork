@@ -9,14 +9,13 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div class="navbar-collapse collapse in" id="navbar-main" aria-expanded="false">
+        <div class="navbar-collapse collapse in" id="navbar-main" ng-controller="FriendController" aria-expanded="false">
             <ul class="nav navbar-nav" ng-if="!username">
                 <li><a href="../#/login">Login</a></li>
                 <li><a href="../#/register">Register</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-left" ng-if="username">
-                <li><input type="search" name="search" placeholder="  Search..." /></li>
-                <li><a href="../#/user/requests" ng-click="clear()"><span class="glyphicon glyphicon-search"></span></a></li>
+                <li><input type="search" name="search" ng-model="search" ng-keyup="searchUsersByName(search)" placeholder="  Search..." /></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="username">
                 <li class="username"><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>

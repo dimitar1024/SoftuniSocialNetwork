@@ -17,9 +17,25 @@ SoftUniNetwork.controller('MeController', function ($scope, $location, mainData,
         $scope.requests = requests;
     })
 
+    $scope.GetUserPreviewData = function (username) {
+        authentication.GetUserPreviewData(username,
+                 function (resp) {
+                     $scope.preview = resp;
+                     $(document).mousemove(function (e) {
+                         $('#preview').css('display', 'block');
+                         $('#preview').css('top', e.pageY);
+                         $('#preview').css('left', e.pageX);
+                     });
+                 })
 
-    $scope.approve = function () {
-        authentication.ApproveFriendRequest($scope.userData,
+    }
+
+    $scope.clearPreviewInfo = function () {
+        $('#preview').css('display', 'none');
+    }
+
+    $scope.approve = function (username) {
+        authentication.ApproveFriendRequest(username,
             function (serverData) {
                 notifyService.showInfo("Successful Approve Edit!");
                 ClearData();
@@ -43,11 +59,4 @@ SoftUniNetwork.controller('MeController', function ($scope, $location, mainData,
                 console.log(serverError);
             });
     };
-
-    $scope.getId = function () {
-        $("button").click(function () {
-            $scope.editId = $(this).parent().parent().attr('id');
-        });
-    };
-
 });

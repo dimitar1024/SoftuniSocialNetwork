@@ -154,3 +154,48 @@ legend {
         width: 1120px;
     }
 }
+
+#preview {
+    position: absolute;
+    border: 1px solid black;
+    width: 180px;
+    height: 80px;
+    padding: 10px;
+}
+
+.postImages {
+    display: inline-block;
+}
+
+.postHeader {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.postContent {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+}
+
+.ownerPost {
+    float: right;
+}
+
+.date {
+    margin-left: 60px;
+}
+
+.inWall {
+    float: right;
+}
+
+.like:hover{
+    color: green;
+    font-size: 20px;
+}
+
+.unlike:hover{
+    color: red;
+    font-size: 20px;
+}
