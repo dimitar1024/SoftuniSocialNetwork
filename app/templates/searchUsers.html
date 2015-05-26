@@ -1,0 +1,5 @@
+﻿<div id="preview">
+    <div ng-repeat="search in searchUsers | limitTo:6" ng-click="displayProfile(friend.username)" class="friend col-sm-2" id="{{search.id}}">
+        <img ng-src="{{search.profileImageData}}" class="img-circle" alt="Alternate Text" />
+    </div>
+</div>

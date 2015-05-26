@@ -38,7 +38,6 @@ SoftUniNetwork.controller('MeController', function ($scope, $location, mainData,
         authentication.ApproveFriendRequest(username,
             function (serverData) {
                 notifyService.showInfo("Successful Approve Edit!");
-                ClearData();
                 $location.path('/user/friends');
             },
             function (serverError) {
@@ -47,11 +46,10 @@ SoftUniNetwork.controller('MeController', function ($scope, $location, mainData,
             });
     };
 
-    $scope.reject = function () {
-        authentication.RejectFriendRequest($scope.userData,
+    $scope.reject = function (username) {
+        authentication.RejectFriendRequest(username,
             function (serverData) {
                 notifyService.showInfo("Successful Reject Edit!");
-                ClearData();
                 $location.path('/user/friends');
             },
             function (serverError) {

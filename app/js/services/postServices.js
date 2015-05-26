@@ -17,22 +17,29 @@
             }).error(error);
     }
 
-    service.AddNewPost = function (postData, headers, success, error) {
-        $http.post(serviceUrl + '/posts', { headers: headers })
+    service.AddNewPost = function (postData,headers,success, error) {
+        $http.post(serviceUrl + '/posts', postData, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
+    service.EditPost = function (postId,postData, headers, success, error) {
+        $http.put(serviceUrl + '/posts/' + postId, postData, { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
     };
 
     service.DeletePost = function (idPost, headers, success, error) {
-        $http.delete(serviceUrl + '/Posts/' + idPost, { headers: headers })
+        $http.delete(serviceUrl + '/Posts/' + idPost, idPost, { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
     };
 
-    service.LikePost = function (postId, headers, success, error) {
-        $http.post(serviceUrl + '/Posts/'+postId+'/likes', { headers: headers })
+    service.LikePost = function (postId,headers, success, error) {
+        $http.post(serviceUrl + '/Posts/' + postId + '/likes', postId, { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);

@@ -22,6 +22,14 @@ SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $
         })
     };
 
+    $scope.addCommentToPost = function (postId) {
+        comment.AddCommentToPost(postId, $scope.comment, authentication.GetHeaders(), function (comment) {
+            notifyService.showInfo("Successful adding comment!");
+        }, function (comment) {
+            notifyService.showError("Unsuccessful adding comment!");
+        })
+    };
+
 
     $scope.likeComment = function (commentId, idComment) {
         comment.LikeComment(commentId, idComment, authentication.GetHeaders(), function (comment) {

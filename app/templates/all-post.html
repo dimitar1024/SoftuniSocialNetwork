@@ -20,9 +20,13 @@
                     <div ng-repeat="friend in friendList | limitTo:6" ng-click="displayProfile(friend.username)" class="friend col-sm-2" id="{{friend.id}}">
                         <img ng-src="{{friend.profileImageData}}" class="img-circle" alt="Alternate Text" />
                     </div>
+
                 </div>
             </div>
         </div>
+
+        
+
 
         <div class="container " ng-controller="PostController">
 
@@ -31,11 +35,13 @@
                 <div id="{{post.id}}">
                     <div class="well bs-component col-lg-12">
                         <img ng-src="{{post.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
-                        <p class="postHeader">{{post.author.name}} (<span>{{post.author.username}}</span>) 
-                            <button ng-if="post.author.username == username" ng-click="deleteComment(post.id)"> Delete</button> 
+                        <p class="postHeader">
+                            {{post.author.name}} (<span>{{post.author.username}}</span>)
+                            <button ng-if="post.author.username == username" ng-click="deleteComment(post.id)"> Delete</button>
+                            <button ng-if="post.author.username == username" ng-click="editPostById(post.id)"> Edit</button>
                         </p>
                         <p class="date"> published a post in {{post.date | date:'MMM d, y HH:mm:ss'}}</p>
-                        <div class="postContent">
+                        <div class="postContent" ng-click="displayPost(post.id)">
                             <p>{{post.postContent}}</p>
                         </div>
 
@@ -60,7 +66,7 @@
                                 </span>
                             </span>
                             <span class="glyphicon glyphicon-comment" ng-click="displayPost(post.id)"></span>({{post.totalCommentsCount}})
-                            
+
                         </p>
                     </div>
                 </div>

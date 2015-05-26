@@ -54,56 +54,14 @@
     </div>
 </div>
 
-<div class="container " ng-controller="CommentController">
+<div class="container " ng-controller="PostController">
     <div class="well bs-component col-lg-12">
-        <div ng-if="comments.length == 0">
-            <h3> No Comments</h3>
-        </div>
-
-        <div ng-repeat="comment in comments">
-            <div id="{{comment.id}}">
-                <div class="well bs-component col-lg-12">
-                    <img ng-src="{{comment.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
-                    <p class="postHeader">
-                        {{comment.author.name}} (<span>{{comment.author.username}}</span>)
-                        <button ng-if="comment.author.username == username" ng-click="deleteComment(meWell.id, comment.id)"> Delete</button>
-                    </p>
-                    <p class="date"> published a post in {{comment.date | date:'MMM d, y HH:mm:ss'}}</p>
-                    <div class="postContent">
-                        <p>{{comment.commentContent}}</p>
-                    </div>
-
-
-                    <p>
-                        <span ng-if="comment.liked == true">
-                            <span class="glyphicon glyphicon-thumbs-up">
-                            </span>  You Like
-                        </span>
-                        <span ng-if="comment.liked == false">
-                            <span class="glyphicon glyphicon-thumbs-down">
-                            </span>  You Unlike
-                        </span>
-                        <span>
-                            <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likeComment(meWell.id, comment.id)">
-                            </span>({{comment.likesCount}})
-                            <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikeComment(meWell.id, comment.id)">
-                            </span>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container " ng-controller="CommentController">
-    <div class="well bs-component col-lg-12">
-        <form class="form-horizontal" name="registerForm" ng-submit="addCommentToPost(meWell.id)">
-            <h3> Add Comment</h3>
+        <form class="form-horizontal" name="registerForm" ng-submit="editPost(meWell.id)">
+            <h3> Add Post</h3>
             <fieldset>
-                <textarea ng-model="comment.commentContent"></textarea>
+                <textarea ng-model="post.postContent"></textarea>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Add Comment</button>
+            <button type="submit" class="btn btn-primary">Add Post</button>
         </form>
     </div>
 </div>

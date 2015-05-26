@@ -30,6 +30,10 @@ SoftUniNetwork.config(function ($routeProvider) {
             templateUrl: 'templates/post.html',
             controller: 'PostController'
         })
+        .when('/post/:idPost/edit', {
+            templateUrl: 'templates/edit-post.html',
+            controller: 'PostController'
+        })
         .when('/user/friends', {
             templateUrl: 'templates/user-friends.html',
             controller: 'MeController'

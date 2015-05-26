@@ -3,15 +3,25 @@
 <div class="userprofile">
     <h1 class="fr-h1"> New Friends</h1>
     <div class="friendslist">
-        <div class="container friendslist" ng-controller="MeController">
+
+        
+
+        <div class="container " ng-controller="MeController">
+
+            <div class="well bs-component col-lg-10">
+                <div ng-if="requests.length == 0">
+                    <h3> No new friends</h3>
+                </div>
+            </div>
+
             <div ng-repeat="request in requests" class="friend col-md-4" id="{{request.id}}">
                 <img ng-src="{{request.user.profileImageData}}" class="img-circle" alt="Alternate Text" />
                 <div>
-                    
+
                     <h3>{{request.user.name}}</h3>
                     <p>{{request.user.username}} </p><br />
-                    <button class="btn btn-primary" ng-click="approve({{request.id}})">Accept</button>
-                    <button class="btn btn-danger" ng-click="reject({{request.id}})">Cancel</button>
+                    <button class="btn btn-primary" ng-click="approve(request.id)">Accept</button>
+                    <button class="btn btn-danger" ng-click="reject(request.id)">Cancel</button>
                 </div>
 
             </div>

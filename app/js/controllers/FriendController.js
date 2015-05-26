@@ -12,11 +12,10 @@ SoftUniNetwork.controller('FriendController', function ($scope, $location, mainD
     $scope.searchUsersByName = function (username) {
 
         authentication.SearchUsersByName(username,
-            function (searchUsers) {
-                $scope.searchUsers = searchUsers;
+            function (search) {
+                $scope.searchUsers = search;
             },
             function (serverError) {
-                notifyService.showError("Unsuccessful Password Change!", serverError)
             });
     };
 

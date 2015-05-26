@@ -61,16 +61,15 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
-    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
     service.ApproveFriendRequest = function (approveId, success, error) {
-        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=approved', { headers: this.GetHeaders() })
+        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=approved', approveId, { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
     };
 
     service.RejectFriendRequest = function (approveId, success, error) {
-        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=rejected', { headers: this.GetHeaders() })
+        $http.put(serviceUrl + '/me/requests/' + approveId + '?status=rejected', approveId, { headers: this.GetHeaders() })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);
@@ -104,12 +103,9 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
     service.SetCredentials = function (serverData) {
         localStorage['accessToken'] = serverData.access_token;
         localStorage['username'] = serverData.userName;
-        localStorage['isAdmin'] = serverData.isAdmin ? serverData.isAdmin : false;
     };
 
     service.GetUsername = function () {

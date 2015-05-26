@@ -28,13 +28,33 @@ SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$loca
     
 
     $scope.addNewPost = function () {
-        $scope.post.username = $routeParams.id;
+        if ($routeParams.id) {
+            $scope.post.username = $routeParams.id;
+        } else {
+            $scope.post.username = $scope.username;
+        }
+        
         post.AddNewPost($scope.post, authentication.GetHeaders(), function (posts) {
             notifyService.showInfo("Successful added post!");
         }, function (posts) {
             notifyService.showError("Unsuccessful added post!");
         })
         
+    };
+
+    $scope.editPost = function (postId) {
+        if ($routeParams.postId) {
+            $scope.post.username = $routeParams.postId;
+        } else {
+            $scope.post.username = $scope.username;
+        }
+
+        post.EditPost(postId, $scope.post, authentication.GetHeaders(), function (posts) {
+            notifyService.showInfo("Successful edit post!");
+        }, function (posts) {
+            notifyService.showError("Unsuccessful edit post!");
+        })
+
     };
 
     $scope.deletePost = function (idPost) {
@@ -64,5 +84,9 @@ SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$loca
 
     $scope.displayPost = function (postId) {
         $location.path('/post/' + postId);
+    };
+
+    $scope.editPostById = function (postId) {
+        $location.path('/post/' + postId + '/edit');
     };
 });
