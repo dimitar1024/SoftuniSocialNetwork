@@ -67,11 +67,20 @@
                     <p class="postHeader">
                         {{comment.author.name}} (<span>{{comment.author.username}}</span>)
                         <button ng-if="comment.author.username == username" ng-click="deleteComment(meWell.id, comment.id)"> Delete</button>
+
+                        <button ng-if="comment.author.username == username" ng-click="editOn()"> Edit</button>
                     </p>
                     <p class="date"> published a post in {{comment.date | date:'MMM d, y HH:mm:ss'}}</p>
                     <div class="postContent">
                         <p>{{comment.commentContent}}</p>
+                        
                     </div>
+                    <form ng-if="edit == true" class="form-horizontal postContent" name="registerForm" ng-submit="editCommentToPost(meWell.id,comment.id)">
+                        <fieldset>
+                            <textarea id="comment-edit" ng-model="comment.commentContent"></textarea>
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </form>
 
 
                     <p>
@@ -90,6 +99,8 @@
                             </span>
                         </span>
                     </p>
+
+
                 </div>
             </div>
         </div>

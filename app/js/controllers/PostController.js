@@ -21,11 +21,25 @@ SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$loca
         });
     }
     else {
-        post.GetNewsFeedPages($scope.PageSize, authentication.GetHeaders(), function (posts) {
-            $scope.meWell = posts;
-        });
+
+        if ($routeParams.id) {
+            post.GetFriendWallByPages($scope.PageSize, $routeParams.id, authentication.GetHeaders(), function (posts) {
+                $scope.meWell = posts;
+            });
+        } else {
+            post.GetNewsFeedPages($scope.PageSize, authentication.GetHeaders(), function (posts) {
+                $scope.meWell = posts;
+            });
+        }
+
+        
     }
     
+    $scope.getsPostPreviewLikes = function (postId) {
+        post.GetsPostPreviewLikes(postId, authentication.GetHeaders(), function (likes) {
+            $scope.postLikes = likes;
+        });
+    };
 
     $scope.addNewPost = function () {
         if ($routeParams.id) {

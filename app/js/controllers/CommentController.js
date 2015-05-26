@@ -30,6 +30,16 @@ SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $
         })
     };
 
+    $scope.editCommentToPost = function (postId, commentId) {
+        comment.EditCommentToPost(postId, commentId, $scope.comment, authentication.GetHeaders(), function (comment) {
+            notifyService.showInfo("Successful adding comment!");
+            editOff();
+        }, function (comment) {
+            notifyService.showError("Unsuccessful adding comment!");
+            editOff();
+        })
+    };
+
 
     $scope.likeComment = function (commentId, idComment) {
         comment.LikeComment(commentId, idComment, authentication.GetHeaders(), function (comment) {
@@ -46,5 +56,14 @@ SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $
             notifyService.showError("Unsuccessful unlike post!");
         })
     };
+
+    $scope.editOn = function () {
+        $scope.edit = true;
+    }
+
+
+    $scope.editOff = function () {
+        $scope.edit = false;
+    }
 
 });

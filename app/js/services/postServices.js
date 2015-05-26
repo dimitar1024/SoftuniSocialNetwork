@@ -10,8 +10,22 @@
             }).error(error);
     };
 
+    service.GetFriendWallByPages = function (postOnPage,user, headers, success, error) {
+        $http.get(serviceUrl + '/users/' + user + '/wall?StartPostId&PageSize=' + postOnPage, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
     service.GetPsotById = function (postId, headers, success, error) {
         $http.get(serviceUrl + '/posts/' + postId, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    }
+
+    service.GetsPostPreviewLikes = function (postId, headers, success, error) {
+        $http.get(serviceUrl + '/posts/' + postId + '/likes/preview', { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);

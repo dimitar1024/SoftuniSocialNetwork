@@ -51,15 +51,15 @@
                         <p class="inWall">the wall of </p>
 
                         <p>
-                            <span ng-if="post.liked == true">
+                            <span ng-if="post.liked == true" ng-click="getsPostPreviewLikes(post.id)">
                                 <span class="glyphicon glyphicon-thumbs-up">
                                 </span>  You Like
                             </span>
-                            <span ng-if="post.liked == false">
+                            <span ng-if="post.liked == false" ng-click="getsPostPreviewLikes(post.id)">
                                 <span class="glyphicon glyphicon-thumbs-down">
                                 </span>  You Unlike
                             </span>
-                            <span>
+                            <span >
                                 <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likePost(post.id)">
                                 </span>({{post.likesCount}})
                                 <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikePost(post.id)">
@@ -68,6 +68,7 @@
                             <span class="glyphicon glyphicon-comment" ng-click="displayPost(post.id)"></span>({{post.totalCommentsCount}})
 
                         </p>
+                        <p><span ng-if="like.postId == post.id" ng-repeat="like in postLikes.postLikes">{{like.user.name}}, </span> like this</p>
                     </div>
                 </div>
 

@@ -17,6 +17,13 @@
             }).error(error);
     };
 
+    service.EditCommentToPost = function (postId,commentId, commentData, headers, success, error) {
+        $http.put(serviceUrl + '/posts/' + postId + '/comments/' + commentId, commentData, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
     service.DeleteComment = function (postId, idComment, headers, success, error) {
         $http.delete(serviceUrl + '/Posts/' + postId + '/comments/' + idComment, { headers: headers })
             .success(function (data, status, headers, config) {

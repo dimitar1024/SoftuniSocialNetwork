@@ -199,3 +199,7 @@ legend {
     color: red;
     font-size: 20px;
 }
+
+#comment-edit {
+    width: 980px;
+}
