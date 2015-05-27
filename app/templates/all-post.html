@@ -1,17 +1,22 @@
 
 <div ng-include="'templates/navbar.html'"></div>
 <div class="container">
-    <div class="bs-component col-lg-9">
+    <div class="bs-component col-lg-12">
 
         <div class="userprofile">
             <div class="userimg">
                 <img ng-src="{{userData.coverImageData}}" id="cover-img" alt="user cover image" />
-
-                <div class="profile-data">
-                    <img ng-src="{{userData.profileImageData}}" class="img-thumbnail" height=" 150" id="userprofile">
-                    <p id="profilename">{{userData.name}}</p>
-                </div>
             </div>
+            <div class="profile-data">
+                <img ng-src="{{userData.profileImageData}}" class="img-thumbnail" height=" 150" id="userprofile">
+                <div class="profile-text">
+                    <p id="profilename">{{userData.name}}</p>
+                    <button ng-if="userData.isFriend == false" class="btn btn-info" ng-click="sendFriendRequest(userData.username)"> Add to friends</button>
+                    <button ng-if="userData.isFriend == true" class="btn btn-info"> Friend</button>
+                </div>
+                
+            </div>
+
         </div>
 
         <div class="userprofile">
@@ -25,10 +30,7 @@
             </div>
         </div>
 
-        
-
-
-        <div class="container " ng-controller="PostController">
+        <div ng-controller="PostController">
 
             <div ng-repeat="post in meWell">
 
@@ -36,18 +38,20 @@
                     <div class="well bs-component col-lg-12">
                         <img ng-src="{{post.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
                         <p class="postHeader">
-                            {{post.author.name}} (<span>{{post.author.username}}</span>)
-                            <button ng-if="post.author.username == username" ng-click="deleteComment(post.id)"> Delete</button>
-                            <button ng-if="post.author.username == username" ng-click="editPostById(post.id)"> Edit</button>
+                            {{post.author.name}} (<span ng-controller="FriendController" class="hoverName" ng-click="displayProfile(post.author.username)">{{post.author.username}}</span>)
+                            <span ng-if="post.author.username == username" ng-click="deletePost(post.id)" class="glyphicon glyphicon-trash"></span>
+                            <span ng-if="post.author.username == username" ng-click="editPostById(post.id)" class="glyphicon glyphicon-edit"></span>
                         </p>
                         <p class="date"> published a post in {{post.date | date:'MMM d, y HH:mm:ss'}}</p>
                         <div class="postContent" ng-click="displayPost(post.id)">
                             <p>{{post.postContent}}</p>
                         </div>
 
-                        <img ng-src="{{post.wallOwner.profileImageData}}" width="50" class="img-circle postImages ownerPost" alt="Alternate Text" />
+                        <img ng-src="{{post.wallOwner.profileImageData}}" width="50" class="img-circle postImages ownerImg" alt="Alternate Text" />
 
-                        <p class="postHeader ownerPost">{{post.wallOwner.name}} (<span>{{post.wallOwner.username}}</span>)</p>
+                        <div class="ownerPost">
+                            <p class="postHeader ">{{post.wallOwner.name}} (<span ng-controller="FriendController" class="hoverName" ng-click="displayProfile(post.wallOwner.username)">{{post.wallOwner.username}}</span>)</p>
+                        </div>
                         <p class="inWall">the wall of </p>
 
                         <p>
@@ -59,7 +63,7 @@
                                 <span class="glyphicon glyphicon-thumbs-down">
                                 </span>  You Unlike
                             </span>
-                            <span >
+                            <span>
                                 <span class="glyphicon glyphicon-thumbs-up like" title="Like this" ng-click="likePost(post.id)">
                                 </span>({{post.likesCount}})
                                 <span class="glyphicon glyphicon-thumbs-down unlike" title="Unlike this" ng-click="unlikePost(post.id)">
@@ -76,12 +80,12 @@
             </div>
         </div>
 
-        <div class="container " ng-controller="PostController">
+        <div ng-controller="PostController" ng-if="userData.isFriend == true">
             <div class="well bs-component col-lg-12">
                 <form class="form-horizontal" name="registerForm" ng-submit="addNewPost()">
                     <h3> Add Post</h3>
                     <fieldset>
-                        <textarea ng-model="post.postContent"></textarea>
+                        <textarea class="textareaPost" ng-model="post.postContent"></textarea>
                     </fieldset>
                     <button type="submit" class="btn btn-primary">Add Post</button>
                 </form>

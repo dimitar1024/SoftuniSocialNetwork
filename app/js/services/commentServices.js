@@ -45,6 +45,13 @@
             }).error(error);
     };
 
+    service.GetsCommentPreviewLikes = function (postId, idComment, headers, success, error) {
+        $http.get(serviceUrl + '/Posts/' + postId + '/comments/' + idComment + '/likes/preview', { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
 
     return service;
 });

@@ -66,9 +66,10 @@
                     <img ng-src="{{comment.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
                     <p class="postHeader">
                         {{comment.author.name}} (<span>{{comment.author.username}}</span>)
-                        <button ng-if="comment.author.username == username" ng-click="deleteComment(meWell.id, comment.id)"> Delete</button>
 
-                        <button ng-if="comment.author.username == username" ng-click="editOn()"> Edit</button>
+                        <span ng-if="comment.author.username == username" ng-click="deleteComment(meWell.id,comment.id)" class="glyphicon glyphicon-trash"></span>
+                        <span ng-if="comment.author.username == username" ng-click="editOn()" class="glyphicon glyphicon-edit"></span>
+                        
                     </p>
                     <p class="date"> published a post in {{comment.date | date:'MMM d, y HH:mm:ss'}}</p>
                     <div class="postContent">
@@ -84,12 +85,12 @@
 
 
                     <p>
-                        <span ng-if="comment.liked == true">
-                            <span class="glyphicon glyphicon-thumbs-up">
+                        <span ng-if="comment.liked == true" ng-click="getsCommentPreviewLikes(meWell.id,comment.id)">
+                            <span class=" glyphicon glyphicon-thumbs-up">
                             </span>  You Like
                         </span>
-                        <span ng-if="comment.liked == false">
-                            <span class="glyphicon glyphicon-thumbs-down">
+                        <span ng-if="comment.liked == false" ng-click="getsCommentPreviewLikes(meWell.id,comment.id)">
+                            <span class=" glyphicon glyphicon-thumbs-down">
                             </span>  You Unlike
                         </span>
                         <span>
@@ -99,7 +100,7 @@
                             </span>
                         </span>
                     </p>
-
+                    <p><span ng-if="like.commentId == comment.id" ng-repeat="like in commentLikes.commentLikes">{{like.user.name}}, </span> like this</p>
 
                 </div>
             </div>
@@ -112,7 +113,7 @@
         <form class="form-horizontal" name="registerForm" ng-submit="addCommentToPost(meWell.id)">
             <h3> Add Comment</h3>
             <fieldset>
-                <textarea ng-model="comment.commentContent"></textarea>
+                <textarea class="textarea" ng-model="comment.commentContent"></textarea>
             </fieldset>
             <button type="submit" class="btn btn-primary">Add Comment</button>
         </form>

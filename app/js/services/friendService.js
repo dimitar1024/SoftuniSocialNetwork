@@ -19,6 +19,8 @@ SoftUniNetwork.factory('friend', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
+    
+
 
 
 });

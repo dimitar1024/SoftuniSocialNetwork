@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$location, mainData, post, authentication, notifyService) {
+SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$location, post, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.PageSize = 5;
     $scope.username = authentication.GetUsername();
@@ -36,8 +36,8 @@ SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$loca
     }
     
     $scope.getsPostPreviewLikes = function (postId) {
-        post.GetsPostPreviewLikes(postId, authentication.GetHeaders(), function (likes) {
-            $scope.postLikes = likes;
+        post.GetsPostPreviewLikes(postId, authentication.GetHeaders(), function (posts) {
+            $scope.postLikes = posts;
         });
     };
 

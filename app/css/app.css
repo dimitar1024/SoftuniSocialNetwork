@@ -139,13 +139,13 @@ legend {
 
 @media (min-width: 768px) {
     #cover-img {
-        width: 700px;
+        width: 690px;
     }
 }
 
 @media (min-width: 992px) {
     #cover-img {
-        width: 920px;
+        width: 910px;
     }
 }
 
@@ -180,14 +180,20 @@ legend {
 
 .ownerPost {
     float: right;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .date {
+    color: skyblue;
     margin-left: 60px;
 }
 
 .inWall {
     float: right;
+    margin-top: 12px;
+    margin-right: 5px;
+    color: skyblue;
 }
 
 .like:hover{
@@ -202,4 +208,60 @@ legend {
 
 #comment-edit {
     width: 980px;
+}
+
+.user-sex {
+    text-align: center;
+}
+
+.textarea {
+    width: 1100px;
+}
+
+.textareaPost {
+    width: 1070px;
+}
+
+.hoverName:hover {
+    color: skyblue;
+    font-weight: bold;
+}
+
+.ownerImg {
+    float: right;
+}
+
+#searchList {
+    background-color: white;
+    position: absolute;
+    top: 85px;
+    left: 400px;
+}
+
+#searchList h3 {
+    font-size: 20px;
+}
+
+.searchImg{
+    width: 50px;
+}
+
+.searchInfo {
+    display: inline-block;
+}
+
+.hoverSearch {
+    padding: 10px;
+}
+
+.hoverSearch:hover {
+    padding: 10px;
+    background-color: #dddddd;
+}
+
+.profile-text {
+    position: absolute;
+    display: inline-block;
+    margin-top: 250px;
+    margin-left: 20px;
 }

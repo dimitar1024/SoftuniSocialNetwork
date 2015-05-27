@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-SoftUniNetwork.controller('FriendController', function ($scope, $location, mainData, authentication, notifyService) {
+SoftUniNetwork.controller('FriendController', function ($scope, $location, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.username = authentication.GetUsername();
     if ($scope.username) {
@@ -12,6 +12,16 @@ SoftUniNetwork.controller('FriendController', function ($scope, $location, mainD
     $scope.searchUsersByName = function (username) {
 
         authentication.SearchUsersByName(username,
+            function (search) {
+                $scope.searchUsers = search;
+            },
+            function (serverError) {
+            });
+    };
+
+    $scope.sendFriendRequest = function (username) {
+
+        friend.SendFriendRequest(username, authentication.GetHeaders(),
             function (search) {
                 $scope.searchUsers = search;
             },

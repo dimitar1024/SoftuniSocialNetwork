@@ -1,7 +1,7 @@
 'use strict';
 
 SoftUniNetwork.controller('AuthenticationController', function ($scope, $location, $route,
-                        authentication, mainData, notifyService) {
+                        authentication, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -21,6 +21,16 @@ SoftUniNetwork.controller('AuthenticationController', function ($scope, $locatio
             },
             function (serverError) {
                 notifyService.showError("Unsuccessful Login!", serverError)
+            });
+    };
+
+    $scope.sendFriendRequest = function (username) {
+
+        authentication.SendFriendRequest(username, authentication.GetHeaders(),
+            function (search) {
+                $scope.searchUsers = search;
+            },
+            function (serverError) {
             });
     };
 
@@ -72,13 +82,7 @@ SoftUniNetwork.controller('AuthenticationController', function ($scope, $locatio
     };
 
     $scope.clear = function () {
-        mainData.clearParams();
-        adminServices.clearParams();
         $route.reload();
     };
 
-    $scope.clearStatus = function () {
-        adServices.clearParams();
-        $route.reload();
-    }
 });

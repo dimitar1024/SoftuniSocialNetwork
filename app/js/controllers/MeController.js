@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-SoftUniNetwork.controller('MeController', function ($scope, $location, mainData, authentication, notifyService) {
+SoftUniNetwork.controller('MeController', function ($scope, $location, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.username = authentication.GetUsername();
     if ($scope.username) {

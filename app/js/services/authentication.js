@@ -103,6 +103,13 @@ SoftUniNetwork.factory('authentication', function ($http, baseServiceUrl) {
             }).error(error);
     };
 
+    service.SendFriendRequest = function (frientUsername, headers, success, error) {
+        $http.post(serviceUrl + '/me/requests/' + frientUsername, frientUsername, { headers: headers })
+            .success(function (data, status, headers, config) {
+                success(data)
+            }).error(error);
+    };
+
     service.SetCredentials = function (serverData) {
         localStorage['accessToken'] = serverData.access_token;
         localStorage['username'] = serverData.userName;

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $location, mainData,comment, post, authentication, notifyService) {
+SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $location,comment, post, authentication, notifyService) {
     $scope.startPage = 1;
     $scope.PageSize = 5;
     $scope.username = authentication.GetUsername();
@@ -13,6 +13,12 @@ SoftUniNetwork.controller('CommentController', function ($scope, $routeParams, $
     comment.GetPostComments($routeParams.idPost, authentication.GetHeaders(), function (com) {
         $scope.comments = com;
     });
+
+    $scope.getsCommentPreviewLikes = function (postId, idComment) {
+        comment.GetsCommentPreviewLikes(postId, idComment, authentication.GetHeaders(), function (likes) {
+            $scope.commentLikes = likes;
+        });
+    };
 
     $scope.deleteComment = function (idPost, idComment) {
         comment.DeleteComment(idPost, idComment, authentication.GetHeaders(), function (posts) {

@@ -16,16 +16,28 @@
             </ul>
             <ul class="nav navbar-nav navbar-left" ng-if="username">
                 <li><input type="search" name="search" ng-model="search" ng-keyup="searchUsersByName(search)" placeholder="  Search..." /></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="username">
                 <li class="username"><a href="../#/me/profile" ng-bind="username" style="font-weight: bold"></a></li>
-                <li><a href="../#/user/home" ng-click="clear()"><span class="glyphicon glyphicon-globe"></span></a></li>
-                <li><a href="../#/user/friends" ng-click="clear()"><span class="glyphicon glyphicon-user"></span></a></li>
-                <li><a href="../#/user/requests" ng-click="clear()"><span class="glyphicon glyphicon-tags"></span></a></li>
-                <li><a href="../#/me/profile"><span class="glyphicon glyphicon-tasks"></span></a></li>
-                <li><a href="../#/me/password"><span class="glyphicon glyphicon-cog"></span></a></li>
-                <li><a href="../#/" ng-click="logout()"><span class="glyphicon glyphicon-off"></span></a></li>
+                <li><a href="../#/user/home" title="New Feed" ng-click="clear()"><span class="glyphicon glyphicon-globe"></span></a></li>
+                <li><a href="../#/user/friends" title="My Friends" ng-click="clear()"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a href="../#/user/requests" title="New Friends" ng-click="clear()"><span class="glyphicon glyphicon-tags"></span></a></li>
+                <li><a href="../#/me/profile"><span title="Edit Profile" class="glyphicon glyphicon-tasks"></span></a></li>
+                <li><a href="../#/me/password"><span title="Edit Password" class="glyphicon glyphicon-cog"></span></a></li>
+                <li><a href="../#/" ng-click="logout()"><span title="Logout" class="glyphicon glyphicon-off"></span></a></li>
             </ul>
+
+            <div id="searchList">
+                <div ng-repeat="search in searchUsers" class="hoverSearch" id="{{search.username}}" ng-click="displayProfile(search.username)">
+
+                    <img ng-src="{{search.profileImageData}}" ng-click="GetUserPreviewData(search.username)" ng-mouseover="GetUserPreviewData(search.username)" class="img-circle searchImg" alt="Img" />
+                    <div class="searchInfo">
+                        <h3>{{search.name}}</h3>
+                        <p>{{search.username}} </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
