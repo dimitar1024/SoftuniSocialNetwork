@@ -19,16 +19,6 @@ SoftUniNetwork.controller('FriendController', function ($scope, $location, authe
             });
     };
 
-    $scope.sendFriendRequest = function (username) {
-
-        friend.SendFriendRequest(username, authentication.GetHeaders(),
-            function (search) {
-                $scope.searchUsers = search;
-            },
-            function (serverError) {
-            });
-    };
-
     $scope.displayProfile = function (profileId) {
         $location.path('/home/' + profileId);
     };

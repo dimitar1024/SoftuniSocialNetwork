@@ -22,7 +22,7 @@
         <div class="well bs-component col-lg-12">
             <img ng-src="{{meWell.author.profileImageData}}" width="50" class="img-circle postImages" alt="Alternate Text" />
             <p class="postHeader">{{meWell.author.name}} (<span>{{meWell.author.username}}</span>) 
-            <button ng-if="post.author.username == username" ng-click="deletePost(post.id)"> Delete</button> </p>
+                <button ng-if="meWell.author.username == username" ng-click="deletePost(meWell.id)"> Delete</button> </p>
             <p class="date"> published a post in {{meWell.date | date:'MMM d, y HH:mm:ss'}}</p>
             <div class="postContent">
                 <p>{{meWell.postContent}}</p>

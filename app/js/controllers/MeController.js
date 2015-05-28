@@ -21,11 +21,7 @@ SoftUniNetwork.controller('MeController', function ($scope, $location, authentic
         authentication.GetUserPreviewData(username,
                  function (resp) {
                      $scope.preview = resp;
-                     $(document).mousemove(function (e) {
-                         $('#preview').css('display', 'block');
-                         $('#preview').css('top', e.pageY);
-                         $('#preview').css('left', e.pageX);
-                     });
+                     
                  })
 
     }

@@ -24,16 +24,6 @@ SoftUniNetwork.controller('AuthenticationController', function ($scope, $locatio
             });
     };
 
-    $scope.sendFriendRequest = function (username) {
-
-        authentication.SendFriendRequest(username, authentication.GetHeaders(),
-            function (search) {
-                $scope.searchUsers = search;
-            },
-            function (serverError) {
-            });
-    };
-
     $scope.register = function () {
         authentication.Register($scope.registerData,
             function(serverData) {

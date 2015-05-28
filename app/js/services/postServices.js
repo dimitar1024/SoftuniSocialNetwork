@@ -46,7 +46,7 @@
     };
 
     service.DeletePost = function (idPost, headers, success, error) {
-        $http.delete(serviceUrl + '/Posts/' + idPost, idPost, { headers: headers })
+        $http.delete(serviceUrl + '/Posts/' + idPost, { headers: headers })
             .success(function (data, status, headers, config) {
                 success(data)
             }).error(error);

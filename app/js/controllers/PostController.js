@@ -50,6 +50,7 @@ SoftUniNetwork.controller('PostController', function ($scope, $routeParams,$loca
         
         post.AddNewPost($scope.post, authentication.GetHeaders(), function (posts) {
             notifyService.showInfo("Successful added post!");
+            $location.path('/home/' + $routeParams.id);
         }, function (posts) {
             notifyService.showError("Unsuccessful added post!");
         })

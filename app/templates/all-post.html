@@ -23,8 +23,11 @@
             <div class="Top6friendslist">
                 <div class="container" ng-controller="FriendController">
                     <div ng-repeat="friend in friendList | limitTo:6" ng-click="displayProfile(friend.username)" class="friend col-sm-2" id="{{friend.id}}">
+                        <span class="friendName">{{friend.name}}</span><br/>
                         <img ng-src="{{friend.profileImageData}}" class="img-circle" alt="Alternate Text" />
                     </div>
+                    
+
 
                 </div>
             </div>

@@ -25,7 +25,15 @@ SoftUniNetwork.controller('MainController', function ($scope,$routeParams, $loca
         }
     }
 
-    
+    $scope.sendFriendRequest = function (username) {
+
+        authentication.SendFriendRequest(username, authentication.GetHeaders(),
+            function (search) {
+                $scope.searchUsers = search;
+            },
+            function (serverError) {
+            });
+    };
 
     
 
